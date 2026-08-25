@@ -12,7 +12,7 @@
    not repaint it. Every colour is set explicitly. ─────────────────────────── */
 :root{
   --bg:#0A0A0A; --bg2:#101014; --panel:#17171B; --line:#25252C; --line2:#3A3A42;
-  --ink:#F2F2F2; --soft:#B9B9BE; --mute:#86868D; --faint:#5C5C63;
+  --ink:#F2F2F2; --soft:#B9B9BE; --mute:#93939A; --faint:#7E7E87;
   --acc:#F26522; --acc2:#FF7A30; --paper:#FBE7A4; --pen:#14130F;
   --disp:'Space Grotesk',system-ui,-apple-system,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -43,12 +43,12 @@ p b,strong{color:var(--ink);font-weight:600}
   background:radial-gradient(120% 62% at 50% 0%,#17171C 0%,var(--bg) 58%,#050505 100%)}
 .hero .top{display:flex;align-items:center;gap:13px;margin-bottom:auto}
 .hero .top img{height:23px}
-.hero .top span{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--faint)}
+.hero .top span{font-family:var(--mono);font-size:13px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--soft)}
 .covers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:34px 0 auto}
 .covers img{border-radius:12px;border:1px solid var(--line2)}
-.cue{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--faint);text-align:center}
+.cue{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mute);text-align:center}
 
 /* ── 2 · the idea ─────────────────────────────────────────────────────────── */
 .idea{text-align:center;padding:120px 0}
@@ -71,8 +71,8 @@ p b,strong{color:var(--ink);font-weight:600}
       inner columns different. The layout IS the argument. ─────────────────── */
 .arch{margin-top:34px;overflow-x:auto}
 .archgrid{display:grid;grid-template-columns:1.05fr 1.35fr 1.15fr 1fr;gap:12px;min-width:860px}
-.archhead{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--faint);padding:0 2px 10px}
+.archhead{font-family:var(--mono);font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--mute);padding:0 2px 10px}
 .archhead.on{color:var(--acc)}
 .same,.diff{border-radius:11px;padding:18px;font-size:15.5px;line-height:1.46}
 .same{background:#101014;border:1px dashed var(--line2);color:var(--mute)}
