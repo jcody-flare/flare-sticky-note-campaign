@@ -95,6 +95,8 @@ p b,strong{color:var(--ink);font-weight:600}
   transform:rotate(var(--r));box-shadow:0 14px 34px -14px rgba(0,0,0,.9)}
 .note .q{font-family:var(--hand);font-weight:700;font-size:26px;line-height:1.2}
 .note.built{outline:2px solid var(--acc);outline-offset:5px}
+.note.blank{background:#161619;border:1px dashed var(--line2);box-shadow:none}
+.note.blank .tag{color:var(--faint)}
 .note .tag{position:absolute;top:12px;left:22px;font-family:var(--mono);font-size:9.5px;
   letter-spacing:.15em;text-transform:uppercase;color:#7A6A3C}
 .count{display:flex;gap:34px;flex-wrap:wrap;margin-top:30px}
@@ -214,40 +216,29 @@ footer a{color:var(--acc2);font-family:var(--mono);font-size:13px;letter-spacing
 
 <!-- ── 6 · THE WALL ─────────────────────────────────────────────────────── -->
 <section><div class="wrap">
-  <p class="eyebrow">It does not run out</p>
-  <h2>Twenty-three notes are written. Three are built.</h2>
-  <p class="lede">These are not placeholders. Each one is a question a bank or credit union
-  executive actually carries, and each one is a post: a specific problem, one product, one
-  outcome. At one a week, this runs into next year.</p>
-  <div class="count">
-    <div><b class="on">3</b><span>built &amp; ready</span></div>
-    <div><b>20</b><span>written, unbuilt</span></div>
-    <div><b>1</b><span>per week</span></div>
-  </div>
+  <p class="eyebrow">A format, not a slate</p>
+  <h2>Three exist. The format does not run out.</h2>
+  <p class="lede">The examples below are the <b>kind</b> of question this structure fits: the
+  sort of thing that actually sits on an executive&rsquo;s desk. <b>Which of them become posts,
+  and how many, is completely open</b> &mdash; that is a decision for this room, not a plan
+  already made. The point is only that the shape holds for any of them: one specific problem,
+  one product, one outcome.</p>
   <div class="wall">
       <div class="note built" style="--r:-1.4deg"><span class="tag">LeadIQ &middot; built</span><span class="q">Who should our bankers be calling?</span></div>
       <div class="note built" style="--r:-1.4deg"><span class="tag">BankingIQ &middot; built</span><span class="q">Why is our return on assets trailing our competitors?</span></div>
       <div class="note built" style="--r:-1.4deg"><span class="tag">DepositIQ &middot; built</span><span class="q">We already lend to them. Why don't we have their deposits?</span></div>
-      <div class="note" style="--r:-2.1deg"><span class="q">Whose primary bank are we?</span></div>
-      <div class="note" style="--r:1.6deg"><span class="q">Which relationships are slipping?</span></div>
-      <div class="note" style="--r:-1.2deg"><span class="q">What would actually move our efficiency ratio?</span></div>
-      <div class="note" style="--r:2.3deg"><span class="q">Can we see a downturn coming?</span></div>
-      <div class="note" style="--r:-1.7deg"><span class="q">Which of our peers is under real pressure?</span></div>
-      <div class="note" style="--r:1.1deg"><span class="q">Why do we keep losing on rate?</span></div>
-      <div class="note" style="--r:-2.4deg"><span class="q">What do our best bankers know that the rest don't?</span></div>
-      <div class="note" style="--r:1.9deg"><span class="q">Do we have to wait for our core provider?</span></div>
-      <div class="note" style="--r:-0.9deg"><span class="q">Which market next?</span></div>
-      <div class="note" style="--r:2.0deg"><span class="q">How much of our book could someone take?</span></div>
-      <div class="note" style="--r:-1.5deg"><span class="q">Can we qualify borrowers before they walk in?</span></div>
-      <div class="note" style="--r:1.4deg"><span class="q">Where is the fee income we never ask for?</span></div>
-      <div class="note" style="--r:-2.2deg"><span class="q">A reason to choose us besides rate</span></div>
-      <div class="note" style="--r:0.8deg"><span class="q">Which customers are we at risk of losing?</span></div>
-      <div class="note" style="--r:-1.8deg"><span class="q">How do we help our business customers grow?</span></div>
-      <div class="note" style="--r:2.2deg"><span class="q">What are we paying consultants for that we should own?</span></div>
-      <div class="note" style="--r:-1.1deg"><span class="q">How do we enter a market without a branch?</span></div>
-      <div class="note" style="--r:1.7deg"><span class="q">What should our bankers work on today?</span></div>
-      <div class="note" style="--r:-2.0deg"><span class="q">Why do we read about our competitors in the newspaper?</span></div>
-      <div class="note" style="--r:1.3deg"><span class="q">Plenty of loans. Where are the deposits?</span></div>
+      <div class="note" style="--r:-2.1deg"><span class="tag">example</span><span class="q">Whose primary bank are we?</span></div>
+      <div class="note" style="--r:1.6deg"><span class="tag">example</span><span class="q">Which relationships are slipping?</span></div>
+      <div class="note" style="--r:-1.2deg"><span class="tag">example</span><span class="q">What would actually move our efficiency ratio?</span></div>
+      <div class="note" style="--r:2.3deg"><span class="tag">example</span><span class="q">Can we see a downturn coming?</span></div>
+      <div class="note" style="--r:-1.7deg"><span class="tag">example</span><span class="q">Why do we keep losing on rate?</span></div>
+      <div class="note" style="--r:1.1deg"><span class="tag">example</span><span class="q">What do our best bankers know that the rest don't?</span></div>
+      <div class="note" style="--r:-2.4deg"><span class="tag">example</span><span class="q">Which market next?</span></div>
+      <div class="note" style="--r:1.9deg"><span class="tag">example</span><span class="q">Where is the fee income we never ask for?</span></div>
+      <div class="note" style="--r:-0.9deg"><span class="tag">example</span><span class="q">Which customers are we at risk of losing?</span></div>
+      <div class="note" style="--r:2.0deg"><span class="tag">example</span><span class="q">How do we enter a market without a branch?</span></div>
+      <div class="note" style="--r:-1.5deg"><span class="tag">example</span><span class="q">What should our bankers work on today?</span></div>
+      <div class="note blank" style="--r:1.9deg"><span class="tag">yours</span></div>
   </div>
 </div></section>
 
