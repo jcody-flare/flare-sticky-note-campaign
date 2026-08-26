@@ -1,5 +1,5 @@
 <title>The Sticky Note Campaign</title>
-<meta name="build" content="2d2569df5742">
+<meta name="build" content="4e9910cfcbea">
 
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -325,7 +325,7 @@ document.querySelectorAll('.film video').forEach(function (v) {
    Nothing here sets a cookie or reads one.
    Events: page_view · page_heartbeat · play/25/50/75/complete/unmute <post> */
 (function () {
-  var CFG = {"provider": "beacon", "beacon_url": "", "style": "flat"};
+  var CFG = {"provider": "beacon", "beacon_url": "https://flare-analytics.theflare.workers.dev/e", "style": "flat"};
   function emit(name, props) {
     try {
       if (CFG.provider === 'plausible' && window.plausible) return window.plausible(name, {props: props});
