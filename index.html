@@ -310,22 +310,25 @@ document.querySelectorAll('.film video').forEach(function (v) {
 </script>
 
 <script>
-/* Flare page analytics. Events, in order of usefulness:
-     page_view     once, on load, with which page and how many posts are on it
-     video_play    a post's video started
-     video_25/50/75  quartiles, so a 3-second bounce is distinguishable from a watch
-     video_complete  reached the end
-     video_unmute  someone turned the sound on, which is the strongest signal here
-     page_heartbeat every 15s while the tab is visible, capped, for dwell time
-   Nothing here sets a cookie or reads one. */
+/* Flare page analytics.
+   ⚠ EVENT NAMES ARE FLAT BY DEFAULT, e.g. "play p005-affinity". Jay, 2026-08-26:
+     "I want to see what videos are getting the most play." Custom event PROPERTIES
+     are a paid tier on most providers and are hidden behind extra setup on GA4,
+     so a props-only design answers that question on nobody's free plan. A flat
+     event name is a row in every provider's dashboard, on every tier. Set
+     analytics.event_style to "props" or "both" in posts.json to change it.
+   ⚠ GEOGRAPHY IS NOT DONE HERE AND MUST NOT BE. Country and region come from the
+     provider resolving the request IP server-side. Doing it in the browser means
+     a third-party geo-IP call from a page shown to bank executives, and it is
+     less accurate. Every provider below reports country out of the box.
+   Nothing here sets a cookie or reads one.
+   Events: page_view · page_heartbeat · play/25/50/75/complete/unmute <post> */
 (function () {
-  var CFG = {"provider": "", "beacon_url": ""};
-  function send(name, props) {
-    props = props || {};
-    props.page = document.title;
+  var CFG = {"provider": "", "beacon_url": "", "style": "flat"};
+  function emit(name, props) {
     try {
       if (CFG.provider === 'plausible' && window.plausible) return window.plausible(name, {props: props});
-      if (CFG.provider === 'gtag'      && window.gtag)      return window.gtag('event', name, props);
+      if (CFG.provider === 'gtag'      && window.gtag)      return window.gtag('event', name.replace(/[^A-Za-z0-9_]/g,'_'), props);
       if (CFG.provider === 'umami'     && window.umami)     return window.umami.track(name, props);
       if (CFG.provider === 'fathom'    && window.fathom)    return window.fathom.trackEvent(name);
       if (CFG.provider === 'beacon'    && CFG.beacon_url && navigator.sendBeacon)
@@ -333,28 +336,32 @@ document.querySelectorAll('.film video').forEach(function (v) {
     } catch (e) {}
     if (!CFG.provider) console.debug('[analytics no-op]', name, props);
   }
+  function send(verb, post) {
+    var props = post ? {post: post} : {};
+    if (CFG.style !== 'props') emit(post ? verb + ' ' + post : verb, props);
+    if (CFG.style !== 'flat' && post) emit(verb, props);
+  }
   window.flareTrack = send;
 
-  send('page_view', {posts: document.querySelectorAll('video').length});
-
+  send('page_view');
   var beats = 0;
   setInterval(function () {
-    if (document.visibilityState === 'visible' && beats < 40) { beats++; send('page_heartbeat', {n: beats}); }
+    if (document.visibilityState === 'visible' && beats < 40) { beats++; send('page_heartbeat'); }
   }, 15000);
 
   document.querySelectorAll('video[data-post]').forEach(function (v) {
     var id = v.getAttribute('data-post'), hit = {};
-    v.addEventListener('play', function () { if (!hit.play) { hit.play = 1; send('video_play', {post: id}); } });
-    v.addEventListener('ended', function () { send('video_complete', {post: id}); });
+    v.addEventListener('play', function () { if (!hit.play) { hit.play = 1; send('play', id); } });
+    v.addEventListener('ended', function () { if (!hit.end) { hit.end = 1; send('complete', id); } });
     v.addEventListener('timeupdate', function () {
       if (!v.duration) return;
       var pct = v.currentTime / v.duration * 100;
       [25, 50, 75].forEach(function (q) {
-        if (pct >= q && !hit[q]) { hit[q] = 1; send('video_' + q, {post: id}); }
+        if (pct >= q && !hit[q]) { hit[q] = 1; send('watch' + q, id); }
       });
     });
     v.addEventListener('volumechange', function () {
-      if (!v.muted && !hit.unmute) { hit.unmute = 1; send('video_unmute', {post: id}); }
+      if (!v.muted && !hit.un) { hit.un = 1; send('unmute', id); }
     });
   });
 })();
